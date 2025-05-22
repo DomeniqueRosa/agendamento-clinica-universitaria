@@ -4,15 +4,15 @@ Projeto desenvolvido para a disciplina de Estrutura de Dados I, que consiste em 
 
 ## Sumário
 
-- [Descrição do Projeto](#-descrição-do-projeto)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Estruturas de Dados](#-estruturas-de-dados)
-- [Funcionalidades e Autoria](#-funcionalidades-e-autoria)
-- [Compilação e Execução](#-compilação-e-execução)
-- [Colaboradores](#-colaboradores)
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Estruturas de Dados](#estruturas-de-dados)
+- [Funcionalidades e Autoria](#funcionalidades-e-autoria)
+- [Compilação e Execução](#compilação-e-execução)
+- [Colaboradores](#colaboradores)
 
 
-## 📋 Descrição do Projeto
+## Descrição do Projeto
 
 Este projeto foi desenvolvido para a disciplina **Estrutura de Dados I** e consiste em um **Sistema de Agendamento de Consultas para uma Clínica Universitária**.
 
@@ -23,7 +23,7 @@ O sistema permite o cadastro de pacientes, o agendamento de consultas, a consult
 O contexto do projeto é uma clínica universitária que organiza os atendimentos mediante agendamento prévio, disponibilizando horários em salas específicas.
 
 
-## 🗂️ Estrutura do Projeto
+## Estrutura do Projeto
 
 O projeto está organizado em pastas separadas para facilitar a manutenção e organização do código. A estrutura possui:
 
@@ -52,7 +52,7 @@ src/
 
 - **`main.c`**: arquivo principal que contém os menus de interação e gerencia o fluxo do programa.
 
-## 🏗️ Estruturas de Dados
+## Estruturas de Dados
 
 O projeto utiliza duas estruturas de dados principais para a organização das informações:
 
@@ -104,7 +104,7 @@ O projeto utiliza duas estruturas de dados principais para a organização das i
   } ListaAgendamentos;
   ```
 
-## 🧠 Funcionalidades e Autoria
+## Funcionalidades e Autoria
 
 Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a autoria de cada uma.
 
@@ -153,7 +153,7 @@ Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a
   Apresenta o histórico com todos os agendamentos cadastrados no sistema.  
   *Desenvolvido por: ...*
 
-## 🛠️ Compilação e Execução
+## Compilação e Execução
 
 1. Clone o repositório:  
 ```bash
@@ -172,7 +172,7 @@ gcc main.c agendamento/agendamento.c paciente/paciente.c -o sistemaAgendamento
 ./sistemaAgendamento
 ```
 
-## 👩‍💻 Colaboradores
+## Colaboradores
 
 Este projeto foi desenvolvido em grupo como parte das atividades da disciplina de **Estrutura de Dados I** da **Universidade Federal do Paraná - UFPR**.   
 
