@@ -28,8 +28,53 @@ void liberarListaAgendamentos(ListaAgendamentos* lista) {
   free(lista);
 }
 
+int compararData(Data d1, Data d2) {
+    return d1.dia == d2.dia && d1.mes == d2.mes && d1.ano == d2.ano;
+}
+
+int compararHora(Hora h1, Hora h2) {
+    return h1.hora == h2.hora && h1.minuto == h2.minuto;
+}
+
+int existeConflitoAgendamento(ListaAgendamentos* listaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora) {
+  NoAgendamento* atual = listaAgendamentos->cabecalho->proximo;
+  
+  while(atual != NULL) {
+    int mesmoPaciente = strcmp(atual->agendamento.paciente.CPF, paciente.CPF) == 0;
+    int mesmaSala = strcmp(atual->agendamento.sala, sala) == 0;
+    int mesmaData = compararData(atual->agendamento.data, data);
+    int mesmaHora = compararHora(atual->agendamento.hora, hora);
+
+    if(mesmoPaciente && mesmaSala && mesmaData && mesmaHora) {
+      printf("\nAgendamento duplicado: O paciente já possui um compromisso marcado nesta sala, na mesma data e horário.\n");
+
+      return 1;
+    }
+
+    if(mesmoPaciente && mesmaData && mesmaHora) {
+      printf("\nConflito de horário: O paciente já tem um agendamento em outro local para esta data e horário.\n");
+
+      return 1;
+    }
+
+    if(mesmaSala && mesmaData && mesmaHora) {
+      printf("\nSala ocupada: Já existe um agendamento para esta sala na mesma data e horário.\n");
+
+      return 1;
+    }
+
+    atual = atual->proximo;
+  }
+
+  return 0;
+}
+
 //Carolina
 void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora) {
+  if(existeConflitoAgendamento(listaAgendamentos, paciente, sala, data, hora)) {
+    return;
+  }
+
   NoAgendamento* novoAgendamento = (NoAgendamento*) malloc(sizeof(NoAgendamento));
 
   novoAgendamento->agendamento.paciente = paciente;
