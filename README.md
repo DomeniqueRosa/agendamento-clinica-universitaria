@@ -9,7 +9,7 @@ Projeto desenvolvido para a disciplina de Estrutura de Dados I, que consiste em 
 - [Estrutura de Dados](#estrutura-de-dados)
 - [Funcionalidades e Autoria](#funcionalidades-e-autoria)
 - [Compilação e Execução](#compilação-e-execução)
-- [Colaboradores](#colaboradores)
+- [Colaboradores](#-colaboradores)
 
 
 ## 📋 Descrição do Projeto
