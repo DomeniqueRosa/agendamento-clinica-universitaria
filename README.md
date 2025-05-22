@@ -4,11 +4,11 @@ Projeto desenvolvido para a disciplina de Estrutura de Dados I, que consiste em 
 
 ## Sumário
 
-- [Descrição do Projeto](#descrição-do-projeto)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Estrutura de Dados](#estrutura-de-dados)
-- [Funcionalidades e Autoria](#funcionalidades-e-autoria)
-- [Compilação e Execução](#compilação-e-execução)
+- [Descrição do Projeto](#-descrição-do-projeto)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Estrutura de Dados](#-estrutura-de-dados)
+- [Funcionalidades e Autoria](#-funcionalidades-e-autoria)
+- [Compilação e Execução](#-compilação-e-execução)
 - [Colaboradores](#-colaboradores)
 
 
