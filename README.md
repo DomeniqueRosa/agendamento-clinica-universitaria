@@ -6,7 +6,7 @@ Projeto desenvolvido para a disciplina de Estrutura de Dados I, que consiste em 
 
 - [Descrição do Projeto](#-descrição-do-projeto)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Estrutura de Dados](#-estrutura-de-dados)
+- [Estruturas de Dados](#-estruturas-de-dados)
 - [Funcionalidades e Autoria](#-funcionalidades-e-autoria)
 - [Compilação e Execução](#-compilação-e-execução)
 - [Colaboradores](#-colaboradores)
@@ -23,7 +23,7 @@ O sistema permite o cadastro de pacientes, o agendamento de consultas, a consult
 O contexto do projeto é uma clínica universitária que organiza os atendimentos mediante agendamento prévio, disponibilizando horários em salas específicas.
 
 
-## 🗂️ Estrutura do projeto
+## 🗂️ Estrutura do Projeto
 
 O projeto está organizado em pastas separadas para facilitar a manutenção e organização do código. A estrutura possui:
 
