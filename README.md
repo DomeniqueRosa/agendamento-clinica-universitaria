@@ -176,7 +176,7 @@ gcc main.c agendamento/agendamento.c paciente/paciente.c -o sistemaAgendamento
 
 Este projeto foi desenvolvido em grupo como parte das atividades da disciplina de **Estrutura de Dados I** da **Universidade Federal do Paraná - UFPR**.   
 
-**Membros:**  
+### 👩‍💻 Membros:  
 - [Alires](...) 
 - [Carolina Milano](https://github.com/CarolGMilano) 
 - [Leon](...) 
