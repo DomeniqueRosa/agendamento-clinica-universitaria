@@ -186,16 +186,14 @@ int main() {
                   printf("Digite o minuto: ");
                   scanf("%d", &minuto);
   
-                  Data data = {
-                    data.dia = dia,
-                    data.mes = mes,
-                    data.ano = ano
-                  }; 
+                  Data data;
+                  data.dia = dia;
+                  data.mes = mes;
+                  data.ano = ano;
 
-                  Hora horario = {
-                    horario.hora = hora,
-                    horario.minuto = minuto
-                  };
+                  Hora horario;
+                  horario.hora = hora;
+                  horario.minuto = minuto;
                   
                   cadastrarAgendamento(listaAgendamentos, resposta->paciente, sala, data, horario);
                 }
