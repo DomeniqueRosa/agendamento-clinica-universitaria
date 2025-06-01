@@ -81,7 +81,7 @@ void cadastrarPaciente(ListaPacientes* lista, const char* nome, const char* CPF,
     }
 }
   
-}//Domenique //dificuldade encontrada ter que entender a estrutura e que ao cadastrar tem que incrementar mais um nao apenas adc
+//Domenique //dificuldade encontrada ter que entender a estrutura e que ao cadastrar tem que incrementar mais um nao apenas adc
 void cadastrarPaciente(ListaPacientes* lista, const char* nome, const char* CPF, const char* matricula, const char* curso) {
 
   if (!buscarPaciente(lista, CPF)) {
