@@ -100,10 +100,97 @@ void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pacient
   printf("\nAgendamento cadastrado com sucesso.\n");
 }
 
-//Leonardo
-int removerAgendamento(ListaAgendamentos* lista, const char* CPF, Data data) {
 
+//Aparentemente as duas variações são equivalentes:
+//void imprimirString(const char *str);
+//void imprimirString(const char str[]);
+//isso daqui l->agendamento.paciente.CPF   se chama campo comum
+///////////////////////////////////////////////////////////////////////////////Minha versão(está correta! mas ficou feia)
+//Leonardo
+/*
+int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
+  if(dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023){
+    return 0;  //data inválida
+  }
+
+  NoAgendamento *l = lista->cabecalho;
+  NoAgendamento *ant = NULL;
+  int igual;
+  
+  if(l == NULL){
+    return 0;  //lista está vazia
+  }
+
+  int a = strcmp(l->agendamento.paciente.CPF, CPF);  
+  if(a == 0){
+    igual = 1;
+  }else{
+    igual = 0;
+  }
+
+  while(l != NULL && !(igual && l->agendamento.data.dia == dia && l->agendamento.data.mes == mes && l->agendamento.data.ano == ano)){
+    ant = l;
+    l = l->proximo;
+
+    if(l != NULL){   //se l ainda não for nulo
+      a = strcmp(l->agendamento.paciente.CPF, CPF);  
+      if(a == 0){
+        igual = 1;
+      }else{
+        igual = 0;
+      }
+    }
+
+  }
+
+  if(l == NULL){
+    return 0;   //Não achou
+  }
+
+  if(ant == NULL){
+    lista->cabecalho = l->proximo;
+  }else{
+    ant->proximo = l->proximo;
+  }
+  
+  free(l);
+  lista->totalAgendamentos--;
+  return 1;  //achou e removeu
 }
+  */
+//////////////////////////////////////////////////////////versão GPT (baseada na minha, só que fica mais fácil de entender)
+int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
+    if (dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023) {
+        return 0;  // Data inválida
+    }
+
+    NoAgendamento *l = lista->cabecalho;
+    NoAgendamento *ant = NULL;
+
+    while (l != NULL) {
+        if (
+            strcmp(l->agendamento.paciente.CPF, CPF) == 0 &&
+            l->agendamento.data.dia == dia &&
+            l->agendamento.data.mes == mes &&
+            l->agendamento.data.ano == ano
+        ) {
+            // Encontrou o agendamento, remove
+            if (ant == NULL) {
+                lista->cabecalho = l->proximo;
+            } else {
+                ant->proximo = l->proximo;
+            }
+            free(l);
+            lista->totalAgendamentos--;
+            return 1;
+        }
+
+        ant = l;
+        l = l->proximo;
+    }
+    return 0;  // Não encontrou
+}
+
 
 //Carolina
 void listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
@@ -139,9 +226,15 @@ void listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
   }
 }
 
-//Leonardo
+//Leonardo ou Letícia
 void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala) {
-
+  NoAgendamento* p = lista->cabecalho;
+  for(p; p != NULL; p = p->proximo){
+    if(strcmp(sala, p->agendamento.sala) == 0){
+      printf("Paciente: %s | Data: %02d/%02d/%04d | Hora: %02d:%02d | Sala: %s\n", p->agendamento.paciente.nome, p->agendamento.data.dia,  
+        p->agendamento.data.mes,  p->agendamento.data.ano, p->agendamento.hora.hora, p->agendamento.hora.minuto, p->agendamento.sala);
+    }
+  }
 }
 
 //Em aberto
