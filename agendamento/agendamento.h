@@ -44,8 +44,7 @@ void liberarListaAgendamentos(ListaAgendamentos* lista);
 
 //Funções de cadastro e remoção de agendamentos
 void cadastrarAgendamento(ListaAgendamentos* ListaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora);
-int removerAgendamento(ListaAgendamentos* lista, const char* CPF, Data data);
-
+int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano);
 //Funções de listagem e busca de agendamentos
 void listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF);
 void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala);
