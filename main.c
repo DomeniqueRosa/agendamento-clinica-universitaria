@@ -3,7 +3,6 @@
 #include "paciente/paciente.h"
 #include "agendamento/agendamento.h"
 
-
 void mostrarAreaDeAcesso() {
   printf("\n\n========== Área de Acesso ==========\n");
   printf("1. Painel de pacientes\n");
@@ -204,7 +203,32 @@ int main() {
               if(listaAgendamentos->totalAgendamentos == 0) {
                 printf("\nRemoção não permitida: nenhum agendamento foi cadastrado até o momento. Por favor, cadastre um agendamento.\n");
               } else {
-                //Remover agendamento
+                printf("\n\n====================================\n");
+                printf("         REMOVER AGENDAMENTO       \n");
+                printf("====================================\n");
+
+                printf("Digite o CPF do paciente: ");
+                scanf("%s", CPF);
+
+                NoPaciente* resposta = buscarPaciente(listaPacientes, CPF);
+                
+                if(resposta == NULL) {
+                  printf("\nPaciente não encontrado.\n");
+                } else {
+                  if(!listarAgendamentoCPF(listaAgendamentos, resposta->paciente.CPF) == 0){
+                    printf("\nEscolha a data do agendamento que deseja remover\n");
+                    printf("Digite o dia: ");
+                    scanf("%d", &dia);
+                    
+                    printf("Digite o mês: ");
+                    scanf("%d", &mes);
+                    
+                    printf("Digite o ano: ");
+                    scanf("%d", &ano);
+  
+                    removerAgendamento(listaAgendamentos, CPF, dia, mes, ano);
+                  }
+                }
               }
             break;
             
@@ -233,7 +257,14 @@ int main() {
               if(listaAgendamentos->totalAgendamentos == 0) {
                 printf("\nListagem não permitida: nenhum agendamento foi cadastrado até o momento. Por favor, cadastre um agendamento.\n");
               } else {
-                //Listar por sala              
+                printf("\n\n====================================\n");
+                printf("         LISTAGEM POR SALA       \n");
+                printf("====================================\n");
+
+                printf("Digite a sala desejada: ");
+                scanf("%s", sala);
+                
+                listarAgendamentoSala(listaAgendamentos, sala);            
               }
             break;
 
@@ -241,7 +272,7 @@ int main() {
               if(listaAgendamentos->totalAgendamentos == 0) {
                 printf("\nApresentação de histórico não permitida: nenhum agendamento foi cadastrado até o momento. Por favor, cadastre um agendamento.\n");
               } else {
-                //Apresentar histórico
+                apresentarHistorico(listaAgendamentos);
               }
             break;
             

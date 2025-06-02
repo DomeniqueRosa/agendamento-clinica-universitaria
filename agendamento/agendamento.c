@@ -71,27 +71,38 @@ int existeConflitoAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pac
 
 //Carolina
 void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora) {
+  /*
+    Verifica se o agendamento que se deseja cadastrar:
+      - Já foi cadastrado;
+      - Se o paciente já possui um agendamento para a mesma data e horário;
+      - Se a sala já possui um agendamento para a mesma data e horário.
+  */
   if(existeConflitoAgendamento(listaAgendamentos, paciente, sala, data, hora)) {
     return;
   }
 
+  //Se não houver conflito, aloca-se a memória para o novo agendamento
   NoAgendamento* novoAgendamento = (NoAgendamento*) malloc(sizeof(NoAgendamento));
 
+  //Adiciona os dados aos campos correspondentes
   novoAgendamento->agendamento.paciente = paciente;
   strcpy(novoAgendamento->agendamento.sala, sala);
   novoAgendamento->agendamento.data = data;
   novoAgendamento->agendamento.hora = hora;
   novoAgendamento->proximo = NULL;
 
+  //Se a lista estiver vazia, o novo nó será inserido na primeira posição
   if(listaAgendamentos->cabecalho->proximo == NULL) {
     listaAgendamentos->cabecalho->proximo = novoAgendamento;
   } else {
+    //Se não, percorre a lista toda até o final
     NoAgendamento* atual = listaAgendamentos->cabecalho->proximo;
     
     while(atual->proximo != NULL) {
       atual = atual->proximo;
     }
 
+    //Adiciona o novo agendamento ao final da lista
     atual->proximo = novoAgendamento;
   }
 
@@ -107,7 +118,7 @@ void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pacient
 //isso daqui l->agendamento.paciente.CPF   se chama campo comum
 ///////////////////////////////////////////////////////////////////////////////Minha versão(está correta! mas ficou feia)
 //Leonardo
-/*
+
 int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
   if(dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023){
     return 0;  //data inválida
@@ -157,9 +168,9 @@ int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int m
   lista->totalAgendamentos--;
   return 1;  //achou e removeu
 }
-  */
+  
 //////////////////////////////////////////////////////////versão GPT (baseada na minha, só que fica mais fácil de entender)
-int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
+/*int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
     if (dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023) {
         return 0;  // Data inválida
     }
@@ -190,17 +201,21 @@ int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int m
     }
     return 0;  // Não encontrou
 }
-
+*/
 
 //Carolina
-void listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
+int listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
+  //Cria um nó auxiliar para percorrer a lista desde o início
   NoAgendamento* atual = lista->cabecalho->proximo;
 
+  //Variável de contagem de agendamentos encontrados
   int agendamentosEncontrados = 0;
+
   printf("\n\n==========================================\n");
   printf("   AGENDAMENTO CADASTRADO PARA O CPF |%s|       \n", CPF);
   printf("==========================================\n\n");
   
+  //Enquanto o nó atual for diferente de NULL, imprima as informações do agendamento
   while(atual != NULL) {
     if(strcmp(atual->agendamento.paciente.CPF, CPF) == 0) {
       printf("Nome: %s\n", atual->agendamento.paciente.nome);
@@ -218,12 +233,18 @@ void listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
       agendamentosEncontrados++;
     }
     
+    //Atualiza o atual para o próximo para percorrer toda a lista
     atual = atual->proximo;
   }
 
+  //Se não forem encontrados agendamentos para o CPF informado, mostrar mensagem de aviso
   if(agendamentosEncontrados == 0) {
     printf("Nenhum agendamento encontrado para o CPF |%s|.", CPF);
+
+    return 0;
   }
+
+  return 1;
 }
 
 //Leonardo ou Letícia
@@ -237,7 +258,26 @@ void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala) {
   }
 }
 
-//Em aberto
+//Carolina
 void apresentarHistorico(ListaAgendamentos* lista) {
+  NoAgendamento* atual = lista->cabecalho->proximo;
 
+  printf("\n\n==========================================\n");
+  printf("        HISTÓRICO DE AGENDAMENTO       \n");
+  printf("==========================================\n\n");
+  printf("Total de agendamentos: %d\n\n", lista->totalAgendamentos);
+
+  //Percorre até o final da lista até imprimir todos os elementos
+  while (atual != NULL) {
+    printf("\nPaciente: %s", atual->agendamento.paciente.nome);
+    printf("\nCPF: %s", atual->agendamento.paciente.CPF);
+    printf("\nMatrícula: %s", atual->agendamento.paciente.matricula);
+    printf("\nCurso: %s", atual->agendamento.paciente.curso);
+    printf("\nSala: %s", atual->agendamento.sala);
+    printf("\nData: %02d/%02d/%04d", atual->agendamento.data.dia, atual->agendamento.data.mes, atual->agendamento.data.ano);
+    printf("\nHora: %02d:%02d\n", atual->agendamento.hora.hora, atual->agendamento.hora.minuto);
+    printf("\n==========================================\n\n");
+
+    atual = atual->proximo;
+  }
 }

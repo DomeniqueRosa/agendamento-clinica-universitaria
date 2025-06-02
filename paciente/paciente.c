@@ -48,71 +48,44 @@ void liberarListaPacientes(ListaPacientes* lista) {
   free(lista);
 }
 
-//Domenique
+//Domenique 
+//dificuldade encontrada ter que entender a estrutura e que ao cadastrar tem que incrementar mais um nao apenas adc
 void cadastrarPaciente(ListaPacientes* lista, const char* nome, const char* CPF, const char* matricula, const char* curso) {
+  //Se a lista não estiver vazia
+  if(lista->totalPacientes >= 1) {
+    //Faz a busca para evitar duplicidade de cadastro
+    if(buscarPaciente(lista, CPF)) {
+      printf("\nErro: O paciente com o CPF |%s| já foi cadastrado.\n", CPF);
 
-  if (!buscarPaciente(lista, CPF)) {
-        // Aloca memória para um novo nó da lista encadeada e zera os campos
-        NoPaciente* novoPaciente = (NoPaciente*)calloc(1, sizeof(NoPaciente));
-
-        // Copia os dados para o novo paciente
-        strcpy(novoPaciente->paciente.nome, nome);
-        strcpy(novoPaciente->paciente.CPF, CPF);
-        strcpy(novoPaciente->paciente.matricula, matricula);
-        strcpy(novoPaciente->paciente.curso, curso);
-    
-
-        // Inserir o novo nó na lista
-        if (lista->primeiro == NULL) {
-            // Lista vazia, novo paciente será o primeiro
-            lista->primeiro = novoPaciente;
-        } else {
-            // Percorre até o final da lista para inserir no fim
-            NoPaciente* atual = lista->primeiro;
-            while (atual->proximoNo != NULL) {
-                atual = atual->proximoNo;
-            }
-            atual->proximoNo = novoPaciente;
-        }
-
-        printf("Paciente cadastrado com sucesso!\n");
-    } else {
-        printf("Paciente já cadastrado.\n");
+      return;
     }
-}
-  
-//Domenique //dificuldade encontrada ter que entender a estrutura e que ao cadastrar tem que incrementar mais um nao apenas adc
-void cadastrarPaciente(ListaPacientes* lista, const char* nome, const char* CPF, const char* matricula, const char* curso) {
+  }
 
-  if (!buscarPaciente(lista, CPF)) {
-        // Aloca memória para um novo nó da lista encadeada e zera os campos
-        NoPaciente* novoPaciente = (NoPaciente*)calloc(1, sizeof(NoPaciente));
+    // Aloca memória para um novo nó da lista encadeada e zera os campos
+    NoPaciente* novoPaciente = (NoPaciente*)calloc(1, sizeof(NoPaciente));
 
-        // Copia os dados para o novo paciente
-        strcpy(novoPaciente->paciente.nome, nome);
-        strcpy(novoPaciente->paciente.CPF, CPF);
-        strcpy(novoPaciente->paciente.matricula, matricula);
-        strcpy(novoPaciente->paciente.curso, curso);
-    
+    // Copia os dados para o novo paciente
+    strcpy(novoPaciente->paciente.nome, nome);
+    strcpy(novoPaciente->paciente.CPF, CPF);
+    strcpy(novoPaciente->paciente.matricula, matricula);
+    strcpy(novoPaciente->paciente.curso, curso);
 
-        // Inserir o novo nó na lista
-        if (lista->primeiro == NULL) {
-            // Lista vazia, novo paciente será o primeiro
-            lista->primeiro = novoPaciente;
-        } else {
-            // Percorre até o final da lista para inserir no fim
-            NoPaciente* atual = lista->primeiro;
-            while (atual->proximoNo != NULL) {
-                atual = atual->proximoNo;
-            }
-            atual->proximoNo = novoPaciente;
-        }
 
-        printf("Paciente cadastrado com sucesso!\n");
-        lista->totalPacientes +=1;
+    // Inserir o novo nó na lista
+    if (lista->primeiro == NULL) {
+        // Lista vazia, novo paciente será o primeiro
+        lista->primeiro = novoPaciente;
     } else {
-        printf("Paciente já cadastrado.\n");
+        // Percorre até o final da lista para inserir no fim
+        NoPaciente* atual = lista->primeiro;
+        while (atual->proximoNo != NULL) {
+            atual = atual->proximoNo;
+        }
+        atual->proximoNo = novoPaciente;
     }
+
+    printf("\nPaciente cadastrado com sucesso!\n");
+    lista->totalPacientes +=1;
 }
 
 int removerPaciente(ListaPacientes* lista, const char* CPF) {
