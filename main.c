@@ -94,6 +94,7 @@ int main() {
                 scanf("%s", CPF);
 
                 removerPaciente(listaPacientes, CPF);
+                removerAgendamentosPorCPF(listaAgendamentos, CPF);
               }
             break;
             

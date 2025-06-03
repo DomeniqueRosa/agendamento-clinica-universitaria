@@ -103,6 +103,8 @@ void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala) {
 
   NoAgendamento* atual = lista->cabecalho->proximo;
 
+  int qtAgendamentos = 0;
+
   while (atual != NULL) {
     if (strcmp(atual->agendamento.sala, sala) == 0) {
       printf("-> %02d/%02d/%04d às %02d:%02d - Paciente: %s\n", atual->agendamento.data.dia,
@@ -111,12 +113,16 @@ void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala) {
                                                                 atual->agendamento.hora.hora, 
                                                                 atual->agendamento.hora.minuto, 
                                                                 atual->agendamento.paciente.nome);
+      qtAgendamentos++;
     }
 
     atual = atual->proximo;
   }
-
-  printf("\nConsidere escolher um horário diferente dos listados acima.\n\n");
+  if(qtAgendamentos == 0) {
+    printf("Nenhum agendamento cadastrado para essa sala.\n\n");
+  } else {
+    printf("\nConsidere escolher um horário diferente dos listados acima.\n\n");
+  }
 }
 
 /*
@@ -316,6 +322,52 @@ void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala) {
         p->agendamento.data.mes,  p->agendamento.data.ano, p->agendamento.hora.hora, p->agendamento.hora.minuto, p->agendamento.sala);
     }
   }
+}
+
+/*
+  Autora: Carolina Milano
+  Descrição: Remove todos os agendamentos de um paciente com CPF específico. 
+             A função percorre a lista de agendamentos, verifica cada nó comparando o CPF do 
+             paciente. Quando encontra um agendamento com o CPF informado, remove o nó da lista 
+             e libera a memória correspondente. O total de agendamentos é decrementado a cada remoção.
+*/
+void removerAgendamentosPorCPF(ListaAgendamentos* lista, const char* CPF) {
+  //Cria um nó auxiliar apontando para o primeiro elemento da lista
+  NoAgendamento* atual = lista->cabecalho->proximo;
+  //Cria um outro nó auxiliar para realocação dos ponteiros
+  NoAgendamento* anterior = NULL;
+
+  //Enquanto não chegar ao final da lista
+  while (atual != NULL) {
+    //Se o CPF informado for igual ao CPF do agendamento encontrad0
+    if (strcmp(atual->agendamento.paciente.CPF, CPF) == 0) {
+      //Cria um nó auxiliar para remoção do agendamento
+      NoAgendamento* paraRemover = atual;
+
+      //Se o anterior for NULL, significa que o nó encontrado é o primeiro da lista
+      if (anterior == NULL) {
+        //Atualiza os ponteiros
+        lista->cabecalho->proximo = atual->proximo;
+        atual = lista->cabecalho->proximo;
+      } else {
+        //Se não, ele não é o primeiro da lista
+        anterior->proximo = atual->proximo;
+        atual = anterior->proximo;
+      }
+
+      //Libera a memória do agendamento encontrado
+      free(paraRemover);
+      
+      //Decrementa o total de agendamentos
+      lista->totalAgendamentos--;
+    } else {
+      //Se não o CPF informado não foi o mesmo do agendamento, apenas atualiza os ponteiros para observar o próximo nó
+      anterior = atual;
+      atual = atual->proximo;
+    }
+  }
+
+  printf("Agendamentos vinculados ao CPF |%s| removidos com sucesso.\n", CPF);
 }
 
 /*
