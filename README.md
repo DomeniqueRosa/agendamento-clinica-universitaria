@@ -151,13 +151,13 @@ Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a
   *Desenvolvido por: ...*
 - **`apresentarHistorico`**  
   Apresenta o histórico com todos os agendamentos cadastrados no sistema.  
-  *Desenvolvido por: ...*
+  *Desenvolvido por: Carolina Milano*
 
 ## Compilação e Execução
 
 1. Clone o repositório:  
 ```bash
-git clone https://github.com/DomeniqueRosa/agendamento-clinica-universitaria.git
+git clone -b master https://github.com/DomeniqueRosa/agendamento-clinica-universitaria.git
 ```
 
 2. Compile o projeto:

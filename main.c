@@ -169,6 +169,8 @@ int main() {
                 } else {
                   printf("Digite a sala: ");
                   scanf("%s", sala);
+
+                  visualizarHorariosDisponiveis(listaAgendamentos, sala);
                   
                   printf("Digite o dia: ");
                   scanf("%d", &dia);

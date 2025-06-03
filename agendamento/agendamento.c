@@ -3,6 +3,11 @@
 #include <string.h>
 #include <stdio.h>
 
+/*
+  Descrião: Cria e inicializa uma lista simplesmente encadeada com nó-cabeçalho para armazenar agendamentos.
+            A função aloca dinamicamente a estrutura da lista e o nó-cabeçalho, que serve como ponto inicial da lista.
+            Inicializa o ponteiro do nó-cabeçalho para NULL e define o total de agendamentos como zero.
+*/
 ListaAgendamentos* criarListaAgendamentos() {
   ListaAgendamentos* agendamentos = (ListaAgendamentos*) malloc(sizeof(ListaAgendamentos));
 
@@ -13,6 +18,11 @@ ListaAgendamentos* criarListaAgendamentos() {
   return agendamentos;
 }
 
+/*
+  Descrição: Libera toda a memória alocada para uma lista simplesmente encadeada com nó-cabeçalho de agendamentos.
+             A função percorre a lista, liberando cada nó, incluindo o nó-cabeçalho e, por fim, libera a estrutura da lista.
+             Também redefine os ponteiros para NULL e zera o total de agendamentos para evitar acesso a memória inválida.
+*/
 void liberarListaAgendamentos(ListaAgendamentos* lista) {
   NoAgendamento* atual = lista->cabecalho;
 
@@ -28,14 +38,28 @@ void liberarListaAgendamentos(ListaAgendamentos* lista) {
   free(lista);
 }
 
+/*
+  Autora: Carolina Milano
+  Descrição: Compara se duas datas são iguais.
+*/
 int compararData(Data d1, Data d2) {
     return d1.dia == d2.dia && d1.mes == d2.mes && d1.ano == d2.ano;
 }
 
+/*
+  Autora: Carolina Milano
+  Descrição: Compara se dois horários são iguais.
+*/
 int compararHora(Hora h1, Hora h2) {
     return h1.hora == h2.hora && h1.minuto == h2.minuto;
 }
 
+/*
+  Autora: Carolina Milano
+  Descrição: Verifica se existe conflito de agendamento na lista, considerando o paciente,
+             a sala, a data e o horário informados. Retorna 1 caso haja conflito (agendamento duplicado,
+             conflito de horário para o mesmo paciente ou sala ocupada) e 0 caso não haja conflito.
+*/
 int existeConflitoAgendamento(ListaAgendamentos* listaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora) {
   NoAgendamento* atual = listaAgendamentos->cabecalho->proximo;
   
@@ -69,7 +93,38 @@ int existeConflitoAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pac
   return 0;
 }
 
-//Carolina
+/*
+  Autora: Carolina Milano
+  Descrição: Exibe todos os horários ocupados para uma sala específica, listando data,
+             hora e paciente, para que o usuário possa visualizar e escolher um horário diferente.
+*/
+void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala) {
+  printf("\nHorários ocupados para a sala %s:\n\n", sala);
+
+  NoAgendamento* atual = lista->cabecalho->proximo;
+
+  while (atual != NULL) {
+    if (strcmp(atual->agendamento.sala, sala) == 0) {
+      printf("-> %02d/%02d/%04d às %02d:%02d - Paciente: %s\n", atual->agendamento.data.dia,
+                                                                atual->agendamento.data.mes,
+                                                                atual->agendamento.data.ano,
+                                                                atual->agendamento.hora.hora, 
+                                                                atual->agendamento.hora.minuto, 
+                                                                atual->agendamento.paciente.nome);
+    }
+
+    atual = atual->proximo;
+  }
+
+  printf("\nConsidere escolher um horário diferente dos listados acima.\n\n");
+}
+
+/*
+  Autora: Carolina Milano
+  Descrição: Cadastra um novo agendamento na lista, após verificar se não há conflitos 
+             com agendamentos existentes para o mesmo paciente, sala, data e horário. Se não houver 
+             conflito, insere o novo agendamento no final da lista e atualiza o total de agendamentos.
+*/
 void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente paciente, const char* sala, Data data, Hora hora) {
   /*
     Verifica se o agendamento que se deseja cadastrar:
@@ -203,7 +258,12 @@ int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int m
 }
 */
 
-//Carolina
+/*
+  Autora: Carolina Milano
+  Descrição: Lista todos os agendamentos cadastrados para um paciente, utilizando o CPF 
+             informado para filtrar e exibir os dados de cada agendamento (nome, CPF, sala, data e horário).
+             Retorna 1 se encontrar agendamentos ou 0 se não encontrar.
+*/
 int listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
   //Cria um nó auxiliar para percorrer a lista desde o início
   NoAgendamento* atual = lista->cabecalho->proximo;
@@ -258,7 +318,12 @@ void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala) {
   }
 }
 
-//Carolina
+/*
+  Autora: Carolina Milano
+  Descrição: Exibe o histórico completo de agendamentos cadastrados na lista, 
+             mostrando os dados do paciente, sala, data e horário de cada agendamento, 
+             além do total de agendamentos registrados.
+*/
 void apresentarHistorico(ListaAgendamentos* lista) {
   NoAgendamento* atual = lista->cabecalho->proximo;
 
