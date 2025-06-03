@@ -141,8 +141,11 @@ Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a
   Cadastra um agendamento no final da lista de agendamentos.  
   *Desenvolvido por: Carolina Milano*
 - **`removerAgendamento`**  
-  Remove um agendamento da lista correspondente ao CPF informado.  
+  Remove um agendamento da lista correspondente ao CPF e data informada.  
   *Desenvolvido por: ...*
+- **`removerAgendamentoPorCPF`**  
+  Remove todos os agendamento da lista correspondente ao CPF informado.  
+  *Desenvolvido por: Carolina Milano*
 - **`listarAgendamentoCPF`**  
   Lista todos os agendamentos correspondentes ao CPF informado.  
   *Desenvolvido por: Carolina Milano*
