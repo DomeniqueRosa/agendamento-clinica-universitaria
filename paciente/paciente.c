@@ -19,32 +19,6 @@ ListaPacientes* criarListaPacientes() {
 }
 
 /*
-  Descrição: Libera a memória alocada para uma lista simplesmente encadeada de pacientes.
-             A função percorre a lista, liberando cada nó individualmente para evitar vazamentos de memória.
-             Ao final, define o ponteiro para o primeiro nó como NULL, zera o total de pacientes 
-             e libera a memória alocada para a estrutura da lista.
-*/
-void liberarListaPacientes(ListaPacientes* lista) {
-  if(!verificarListaPaciente(lista)) return;
-
-  NoPaciente* atual = lista->primeiro;  
-  NoPaciente* proximo;
-  
-  while(atual != NULL) {
-    proximo = atual->proximoNo;
-    
-    free(atual);
-
-    atual = proximo;
-  }
-
-  lista->primeiro = NULL;
-  lista->totalPacientes = 0;
-
-  free(lista);
-}
-
-/*
   Autora: Carolina Milano
   Descrição: Verifica se a lista de pacientes está inicializada e se não está vazia.
              Retorna 1 se a lista for válida ou não estiver vazia.
@@ -66,6 +40,32 @@ int verificarListaPaciente(ListaPacientes* lista) {
 
   return 1;
 }
+
+/*
+  Descrição: Libera a memória alocada para uma lista simplesmente encadeada de pacientes.
+             A função percorre a lista, liberando cada nó individualmente para evitar vazamentos de memória.
+             Ao final, define o ponteiro para o primeiro nó como NULL, zera o total de pacientes 
+             e libera a memória alocada para a estrutura da lista.
+*/             
+void liberarListaPacientes(ListaPacientes* lista) {
+  if(!verificarListaPaciente(lista)) return;
+
+  NoPaciente* atual = lista->primeiro;  
+  NoPaciente* proximo;
+  
+  while(atual != NULL) {
+    proximo = atual->proximoNo;
+    
+    free(atual);
+
+    atual = proximo;
+  }  
+
+  lista->primeiro = NULL;
+  lista->totalPacientes = 0;
+
+  free(lista);
+}  
 
 //Domenique 
 //dificuldade encontrada ter que entender a estrutura e que ao cadastrar tem que incrementar mais um nao apenas adc
