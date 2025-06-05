@@ -231,40 +231,6 @@ int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int m
   lista->totalAgendamentos--;
   return 1;  //achou e removeu
 }
-  
-//////////////////////////////////////////////////////////versão GPT (baseada na minha, só que fica mais fácil de entender)
-/*int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
-    if (dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023) {
-        return 0;  // Data inválida
-    }
-
-    NoAgendamento *l = lista->cabecalho;
-    NoAgendamento *ant = NULL;
-
-    while (l != NULL) {
-        if (
-            strcmp(l->agendamento.paciente.CPF, CPF) == 0 &&
-            l->agendamento.data.dia == dia &&
-            l->agendamento.data.mes == mes &&
-            l->agendamento.data.ano == ano
-        ) {
-            // Encontrou o agendamento, remove
-            if (ant == NULL) {
-                lista->cabecalho = l->proximo;
-            } else {
-                ant->proximo = l->proximo;
-            }
-            free(l);
-            lista->totalAgendamentos--;
-            return 1;
-        }
-
-        ant = l;
-        l = l->proximo;
-    }
-    return 0;  // Não encontrou
-}
-*/
 
 /*
   Autora: Carolina Milano
