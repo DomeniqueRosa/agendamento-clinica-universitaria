@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 /*
+  Autora: Carolina Milano
   Descrição: Cria e inicializa uma nova lista simplesmente encadeada de pacientes.
              A função aloca dinamicamente a estrutura da lista, define o ponteiro 
              para o primeiro nó como NULL e inicializa o total de pacientes com 0.
@@ -42,6 +43,7 @@ int verificarListaPaciente(ListaPacientes* lista) {
 }
 
 /*
+  Autora: Carolina Milano
   Descrição: Libera a memória alocada para uma lista simplesmente encadeada de pacientes.
              A função percorre a lista, liberando cada nó individualmente para evitar vazamentos de memória.
              Ao final, define o ponteiro para o primeiro nó como NULL, zera o total de pacientes 
