@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 /*
+  Autora: Carolina Milano
   Descrião: Cria e inicializa uma lista simplesmente encadeada com nó-cabeçalho para armazenar agendamentos.
             A função aloca dinamicamente a estrutura da lista e o nó-cabeçalho, que serve como ponto inicial da lista.
             Inicializa o ponteiro do nó-cabeçalho para NULL e define o total de agendamentos como zero.
@@ -19,6 +20,7 @@ ListaAgendamentos* criarListaAgendamentos() {
 }
 
 /*
+  Autora: Carolina Milano
   Descrição: Libera toda a memória alocada para uma lista simplesmente encadeada com nó-cabeçalho de agendamentos.
              A função percorre a lista, liberando cada nó, incluindo o nó-cabeçalho e, por fim, libera a estrutura da lista.
              Também redefine os ponteiros para NULL e zera o total de agendamentos para evitar acesso a memória inválida.
