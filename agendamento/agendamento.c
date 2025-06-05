@@ -315,15 +315,45 @@ int listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF) {
   return 1;
 }
 
-//Leonardo ou Letícia
+/* Autora: Letícia 
+   Descrição: Lista todos os agendamentos de uma determinada sala, filtrados pelo nome da sala
+              e exibe os dados de agendamento dos pacientes (nome, CPF, data e hora)*/
+
+
 void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala) {
-  NoAgendamento* p = lista->cabecalho;
-  for(p; p != NULL; p = p->proximo){
-    if(strcmp(sala, p->agendamento.sala) == 0){
-      printf("Paciente: %s | Data: %02d/%02d/%04d | Hora: %02d:%02d | Sala: %s\n", p->agendamento.paciente.nome, p->agendamento.data.dia,  
-        p->agendamento.data.mes,  p->agendamento.data.ano, p->agendamento.hora.hora, p->agendamento.hora.minuto, p->agendamento.sala);
+    // Começa a percorrer a lista a partir do primeiro nó real
+    NoAgendamento* atual = lista->cabecalho->proximo;
+
+    // Variável de controle de agendamentos encontrados
+    int encontrados = 0;
+
+    printf("\n\n============================================\n");
+    printf("      AGENDAMENTOS PARA A SALA: %s\n", sala);
+    printf("============================================\n");
+
+    // Enquanto o nó atual for diferente de "NULL", imprime os dados de agendamento
+    while (atual != NULL) {
+        if (strcmp(atual->agendamento.sala, sala) == 0) {
+            printf("Nome: %s\n", atual->agendamento.paciente.nome);
+            printf("C.P.F: %s\n", atual->agendamento.paciente.CPF);
+            printf("Data: %02d/%02d/%04d\n", atual->agendamento.data.dia,
+                                              atual->agendamento.data.mes,
+                                              atual->agendamento.data.ano);
+            printf("Hora: %02d:%02d\n", atual->agendamento.hora.hora,
+                                          atual->agendamento.hora.minuto);
+            printf("--------------------------------------------\n");
+
+            // Incrementa o contador de agendamentos encontrados
+            encontrados++;
+        }
+        // Aponta para o próximo agendamento da lista
+        atual = atual->proximo;
     }
-  }
+
+    // Mensagem de aviso caso não encontre agendamentos para a sala informada
+    if (encontrados == 0) {
+        printf("Nenhum agendamento encontrado para a sala '%s'.\n", sala);
+    }
 }
 
 /*
