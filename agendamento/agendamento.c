@@ -175,12 +175,9 @@ void cadastrarAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pacient
 }
 
 
-//Aparentemente as duas variações são equivalentes:
-//void imprimirString(const char *str);
-//void imprimirString(const char str[]);
-//isso daqui l->agendamento.paciente.CPF   se chama campo comum
-///////////////////////////////////////////////////////////////////////////////Minha versão(está correta! mas ficou feia)
-//Leonardo
+
+///////////////////////////////////////////////////////////////////////////////
+//Autor: LeonardoLeonardo -->deleta um agendamento com base no cpf e data
 
 int removerAgendamento(ListaAgendamentos* lista, const char* CPF, int dia, int mes, int ano) {
   if(dia > 31 || dia < 1 || mes < 1 || mes > 12 || ano < 2023){
