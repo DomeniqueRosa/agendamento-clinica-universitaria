@@ -112,10 +112,10 @@ Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a
 
 - **`criarListaPacientes`**  
   Cria uma nova lista simplesmente encadeada para pacientes.  
-  *Desenvolvido coletivamente*
+  *Desenvolvido por: Carolina Milano*
 - **`liberarListaPacientes`**  
   Libera toda a memória da lista de pacientes.  
-  *Desenvolvido coletivamente*
+  *Desenvolvido por: Carolina Milano*
 - **`cadastrarPaciente`**  
   Cadastra um paciente no final da lista de pacientes.  
   *Desenvolvido por: ...*
@@ -133,10 +133,10 @@ Abaixo, listamos as funcionalidades implementadas, separadas por arquivo e com a
 
 - **`criarListaAgendamentos`**  
   Cria uma nova lista com nó-cabeçalho para agendamentos.  
-  *Desenvolvido coletivamente*
+  *Desenvolvido por: Carolina Milano*
 - **`liberarListaAgendamentos`**  
   Libera toda a memória da lista de agendamentos.  
-  *Desenvolvido coletivamente*
+  *Desenvolvido por: Carolina Milano*
 - **`cadastrarAgendamento`**  
   Cadastra um agendamento no final da lista de agendamentos.  
   *Desenvolvido por: Carolina Milano*
