@@ -97,33 +97,44 @@ int existeConflitoAgendamento(ListaAgendamentos* listaAgendamentos, Paciente pac
 
 /*
   Autora: Carolina Milano
-  Descrição: Exibe todos os horários ocupados para uma sala específica, listando data,
-             hora e paciente, para que o usuário possa visualizar e escolher um horário diferente.
+  Descrição: Exibe todos os horários disponíveis para uma sala específica.
 */
-void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala) {
-  printf("\nHorários ocupados para a sala %s:\n\n", sala);
+void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala, Data data) {
+  //Array pra armazenar os horários ocupados entre 08h e 18h  
+  int horariosOcupados[11] = {0};
 
   NoAgendamento* atual = lista->cabecalho->proximo;
 
-  int qtAgendamentos = 0;
-
   while (atual != NULL) {
-    if (strcmp(atual->agendamento.sala, sala) == 0) {
-      printf("-> %02d/%02d/%04d às %02d:%02d - Paciente: %s\n", atual->agendamento.data.dia,
-                                                                atual->agendamento.data.mes,
-                                                                atual->agendamento.data.ano,
-                                                                atual->agendamento.hora.hora, 
-                                                                atual->agendamento.hora.minuto, 
-                                                                atual->agendamento.paciente.nome);
-      qtAgendamentos++;
+    if (
+        strcmp(atual->agendamento.sala, sala) == 0 &&
+        atual->agendamento.data.dia == data.dia &&
+        atual->agendamento.data.mes == data.mes &&
+        atual->agendamento.data.ano == data.ano
+    ) {
+
+      horariosOcupados[atual->agendamento.hora.hora - 8] = 1; 
     }
 
     atual = atual->proximo;
   }
-  if(qtAgendamentos == 0) {
-    printf("Nenhum agendamento cadastrado para essa sala.\n\n");
-  } else {
-    printf("\nConsidere escolher um horário diferente dos listados acima.\n\n");
+
+  printf("\nHorários disponíveis na sala |%s| em %02d/%02d/%04d:\n\n", sala, data.dia, data.mes, data.ano);
+
+  //Variável de controle para mostrar se tem, pelo menos, 1 horário disponível
+  int algumDisponivel = 0;
+
+  for (int i = 0; i <= 10; i++) {
+    if (!horariosOcupados[i]) {
+      printf("-> %02d:00\n", i + 8);
+      algumDisponivel = 1;
+    }
+  }
+
+  printf("\n");
+
+  if (!algumDisponivel) {
+    printf("Nenhum horário disponível neste dia.\n");
   }
 }
 
