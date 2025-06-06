@@ -171,8 +171,6 @@ int main() {
                   printf("Digite a sala: ");
                   scanf("%s", sala);
 
-                  visualizarHorariosDisponiveis(listaAgendamentos, sala);
-                  
                   printf("Digite o dia: ");
                   scanf("%d", &dia);
                   
@@ -180,18 +178,20 @@ int main() {
                   scanf("%d", &mes);
                   
                   printf("Digite o ano: ");
-                  scanf("%d", &ano);
+                  scanf("%d", &ano);  
+
+                  Data data;
+                  data.dia = dia;
+                  data.mes = mes;
+                  data.ano = ano;
+                  
+                  visualizarHorariosDisponiveis(listaAgendamentos, sala, data);
                   
                   printf("Digite o hora: ");
                   scanf("%d", &hora);
                   
                   printf("Digite o minuto: ");
                   scanf("%d", &minuto);
-  
-                  Data data;
-                  data.dia = dia;
-                  data.mes = mes;
-                  data.ano = ano;
 
                   Hora horario;
                   horario.hora = hora;
