@@ -51,7 +51,7 @@ int listarAgendamentoCPF(ListaAgendamentos* lista, const char* CPF);
 void listarAgendamentoSala(ListaAgendamentos* lista, const char* sala);
 
 //Função para mostrar os dias ocupadas para a sala digitada
-void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala);
+void visualizarHorariosDisponiveis(ListaAgendamentos* lista, const char* sala, Data data);
 
 //Função de remoção de todos os agendamentos de um CPF específico
 void removerAgendamentosPorCPF(ListaAgendamentos* lista, const char* CPF);
